@@ -425,41 +425,6 @@ button:hover {
 .stack-icons img:hover {
   transform: scale(1.2);
 }
-
-/* Dark & Light Mode */
-body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-body.light-mode {
-  background-color: #ffffff;
-  color: #121212;
-}
-
-.music-widget {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.music-button {
-  background-color: #4f46e5;
-  color: #fff;
-  border: none;
-  padding: 10px 12px;
-  font-size: 20px;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.music-button:hover {
-  background-color: #6366f1;
-  transform: scale(1.1);
-}
-
   </style>
 </head>
 <body>
@@ -491,12 +456,6 @@ body.light-mode {
         <img src="https://via.placeholder.com/120x80?text=Secret+2" alt="Secret Work 2"/>
       </div>
     </div>
-    <!-- 🌗 Dark/Light Toggle -->
-<div class="toggle-theme">
-  <button id="theme-toggle" class="fancy-button">
-    🌙 Toggle Theme
-  </button>
-</div>
 
 <!-- 🧰 Tech Stack -->
 <div class="tech-stack">
@@ -509,21 +468,13 @@ body.light-mode {
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" />
   </div>
 </div>
-
-<!-- 🎵 Music Widget -->
-<div class="music-widget">
-  <h4>🎵 Listen to my favorite track</h4>
-  <button id="musicToggle" class="music-button">▶️</button>
-  <audio id="musicPlayer" src="your-music-file.mp3"></audio>
 </div>
-
-  </div>
 
   <section id="about">
     <div class="profile">
       <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-1/484217089_1367723144428567_8918620345163373824_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=106&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGX-FEOdNU3jwOAr7YzxAOKrtAhf1mE_G2u0CF_WYT8bVBM303CpzmjTAd8IjFekDuS91baEqGSBOgBAIVU8FFX&_nc_ohc=HyjPyKGKclUQ7kNvwHYoWTR&_nc_oc=AdmRZjdj3jL8Eexa6Le1yQBMeWi6Fw3Fvcdu9YlJmNoTSfQIfPCiw0VU4MSFRlYLonU5diM0TyaW8J-go0ZHW8gl&_nc_zt=24&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=VOyc7e79ktcRXg3se-gaDg&oh=00_AfGcsraS5q6LZbDKD9BdRHXA2ZPfDnj0ywWrOjmKS1lIjQ&oe=680E6501" alt="Marc Profile"/>
       <h2>About Me</h2>
-      <p>I'm Marc – a senior highschool student, pianist, and web enthusiast from the Philippines.</p>
+      <p>I'm Raymarc – a senior highschool student, pianist, and web enthusiast from the Philippines.</p>
     </div>
     <div class="timeline">
       <div class="timeline-item">Started my coding journey in high school.</div>
@@ -608,7 +559,7 @@ body.light-mode {
       const content = document.getElementById("secret-content");
       const error = document.getElementById("error-msg");
 
-      if (password === "lovemarc") {
+      if (password === "lovey072324") {
         content.style.display = "block";
         error.style.display = "none";
       } else {
@@ -663,27 +614,6 @@ function nextImage() {
   currentIndex = (currentIndex + 1) % galleryImages.length;
   showImage(currentIndex);
 }
-
-  const musicBtn = document.getElementById("musicToggle");
-  const music = document.getElementById("musicPlayer");
-
-  let isPlaying = false;
-
-  musicBtn.addEventListener("click", () => {
-    if (isPlaying) {
-      music.pause();
-      musicBtn.textContent = "▶️";
-    } else {
-      music.play();
-      musicBtn.textContent = "⏸️";
-    }
-    isPlaying = !isPlaying;
-  });
-
-  document.getElementById("theme-toggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    document.body.classList.toggle("light-mode");
-  });
 
   const snippets = [
     `console.log("Hello, world!");`,
