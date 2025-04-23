@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Marc's Scrapbook Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Quicksand&display=swap');
+
+    :root {
+      --bg-color: #000014;
+      --text-color: #ffffff;
+      --accent-color: #004edf;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: #0d0d2b;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px dashed rgb(0, 47, 100);
+    }
+
+    header h1 {
+      font-family: 'Permanent Marker', cursive;
+      color: rgb(0, 93, 199);
+      font-size: 1.8em;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+    }
+
+    nav a {
+      padding: 8px 12px;
+      background-color: #03009b;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid rgb(0, 47, 100);
+      font-size: 0.9em;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgb(0, 047, 100);
+      color: black;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      cursor: pointer;
+      display: none;
+    }
+
+    .hamburger div {
+      width: 30px;
+      height: 3px;
+      background-color: rgb(0, 60, 255);
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 300px;
+      height: 100%;
+      background-color: #1a0033;
+      padding: 25px;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.8);
+      transition: right 0.4s ease;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    #sidebar.open {
+      right: 0;
+    }
+
+    #sidebar h2 {
+      font-family: 'Permanent Marker', cursive;
+      margin-bottom: 10px;
+      color: #0099ff;
+    }
+
+    #secret-content {
+      display: none;
+      margin-top: 15px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .secret-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .secret-gallery img {
+      width: 100%;
+      border: 3px dashed rgb(0, 19, 190);
+      border-radius: 10px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+
+    section {
+      margin: 40px auto;
+      padding: 30px 15px;
+      max-width: 900px;
+      border: 5px double rgb(0, 19, 189);
+      background: rgba(0, 0, 20, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #000ba8;
+    }
+
+    h2 {
+      font-family: 'Permanent Marker', cursive;
+      text-align: center;
+      font-size: 1.8em;
+      color: #003af8;
+      margin-bottom: 20px;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px dashed rgb(0, 30, 199);
+      margin-bottom: 15px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .timeline-item {
+      padding: 15px;
+      background: rgba(255,255,255,0.05);
+      border-left: 4px solid rgb(0, 110, 255);
+      border-radius: 10px;
+    }
+
+    .works, .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+    }
+
+    .works img, .gallery img {
+      width: 100%;
+      border: 4px solid #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px #0011ff;
+      transition: transform 0.3s ease;
+    }
+
+    .works img:hover, .gallery img:hover {
+      transform: rotate(-2deg) scale(1.05);
+    }
+
+    .easter-egg {
+      text-align: center;
+      margin-top: 25px;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+
+    .easter-egg:hover {
+      text-decoration: underline;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 1em;
+      border: none;
+    }
+
+    button {
+      background: navy;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background: rgb(7, 7, 158);
+    }
+
+    .code-widget {
+  background: #000014; /* deep navy blue */
+  border: 2px dashed #03009b;
+  color: #dbe2ef;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  font-family: 'Indie Flower', cursive;
+  box-shadow: 4px 4px 0 #576cbc;
+  transition: transform 0.2s ease;
+}
+
+.code-widget:hover {
+  transform: scale(1.02) rotate(-1deg);
+}
+
+.widget-header {
+  font-weight: bold;
+  color: #003af8;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+#codeDisplay {
+  background: rgb(3, 3, 94);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #0010a5;
+  overflow-x: auto;
+  max-height: 200px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #f0f0f0;
+}
+
+button {
+  background: #576cbc;
+  color: #ffffff;
+  border: 1px dashed #1324aa;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  box-shadow: 2px 2px 0 #324c7c;
+}
+
+button:hover {
+  background: #415a9c;
+}
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background: blue;
+      color: black;
+      border-radius: 10px;
+      display: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      background: #0d0d2b;
+      padding: 25px;
+      margin-top: 40px;
+      border-top: 3px dashed navy;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #0026ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    .gallery-slideshow {
+  text-align: center;
+}
+
+.gallery-slideshow img {
+  width: 300px;
+  border: 4px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px #6600cc;
+  transition: 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.gallery-buttons button {
+  margin: 0 10px;
+  padding: 10px 15px;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.gallery-buttons button:hover {
+  background: rgb(0, 74, 235);
+  color: black;
+}
+
+.works button {
+  background: none;
+  border: none;
+  padding: 10px; /* Add spacing around each button */
+  margin: 10px; /* Optional: spacing between buttons */
+  cursor: pointer;
+}
+
+.works button img {
+  width: 200px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 4px solid #fff;
+  box-shadow: 0 5px 15px #0011ff;
+  transition: transform 0.3s ease;
+}
+
+/* General Sidebar Padding */
+.sidebar {
+  padding: 20px;
+}
+
+/* Fancy Button */
+.fancy-button {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 5px 0;
+  width: 100%;
+}
+
+.fancy-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.fancy-button.pause {
+  background: linear-gradient(to right, #fc466b, #3f5efb);
+}
+
+.stack-icons img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.stack-icons img:hover {
+  transform: scale(1.2);
+}
+
+/* Dark & Light Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+.music-widget {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.music-button {
+  background-color: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 10px 12px;
+  font-size: 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.music-button:hover {
+  background-color: #6366f1;
+  transform: scale(1.1);
+}
+
+  </style>
+</head>
+<body>
+  <div class="hamburger" onclick="toggleSidebar()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <header>
+    <h1>Marc's Scrapbook</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#gallery">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div id="sidebar">
+    <h2>Marc's Scrapbook</h2>
+    <input type="password" id="password" placeholder="Enter password"/>
+    <p class="error" id="error-msg">Incorrect password!</p>
+    <button onclick="checkPassword()">Unlock</button>
+    <div id="secret-content">
+      <p>This is where I keep the hidden gems — ideas, dreams, doodles, and future plans.</p>
+      <div class="secret-gallery">
+        <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t1.15752-9/487416541_8851714388261296_8904122459602987831_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeH-Ff7qjCbDPWxZgvXu5l2FYuAkGoaO8Uxi4CQaho7xTLW_LemMv3-vHYePsfpDXSBHDBsYN-buhv9Ut0dPeSnd&_nc_ohc=6nyLfD7QF98Q7kNvwFpi4oi&_nc_oc=Adna1TKA-Mt8R3drP-3W8cGHm1BV8AKP2g568qCRIIqwLta29FqTazKr08h8yww_0MmR3WzV22ANmo3TtH0O-ZKR&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&oh=03_Q7cD2AFP7HJnf1SLQlIe0oDcahktzS_3p-0ACAB7UIUJ09TMtA&oe=681DD1B2" alt="Secret Work 1"/>
+        <img src="https://via.placeholder.com/120x80?text=Secret+2" alt="Secret Work 2"/>
+      </div>
+    </div>
+    <!-- 🌗 Dark/Light Toggle -->
+<div class="toggle-theme">
+  <button id="theme-toggle" class="fancy-button">
+    🌙 Toggle Theme
+  </button>
+</div>
+
+<!-- 🧰 Tech Stack -->
+<div class="tech-stack">
+  <h3>🧰 Tech Stack</h3>
+  <div class="stack-icons">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" title="Firebase" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" />
+  </div>
+</div>
+
+<!-- 🎵 Music Widget -->
+<div class="music-widget">
+  <h4>🎵 Listen to my favorite track</h4>
+  <button id="musicToggle" class="music-button">▶️</button>
+  <audio id="musicPlayer" src="your-music-file.mp3"></audio>
+</div>
+
+  </div>
+
+  <section id="about">
+    <div class="profile">
+      <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-1/484217089_1367723144428567_8918620345163373824_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=106&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGX-FEOdNU3jwOAr7YzxAOKrtAhf1mE_G2u0CF_WYT8bVBM303CpzmjTAd8IjFekDuS91baEqGSBOgBAIVU8FFX&_nc_ohc=HyjPyKGKclUQ7kNvwHYoWTR&_nc_oc=AdmRZjdj3jL8Eexa6Le1yQBMeWi6Fw3Fvcdu9YlJmNoTSfQIfPCiw0VU4MSFRlYLonU5diM0TyaW8J-go0ZHW8gl&_nc_zt=24&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=VOyc7e79ktcRXg3se-gaDg&oh=00_AfGcsraS5q6LZbDKD9BdRHXA2ZPfDnj0ywWrOjmKS1lIjQ&oe=680E6501" alt="Marc Profile"/>
+      <h2>About Me</h2>
+      <p>I'm Marc – a senior highschool student, pianist, and web enthusiast from the Philippines.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">Started my coding journey in high school.</div>
+      <div class="timeline-item">This is my first personal website.</div>
+      <div class="timeline-item">Collaborated with online creators & clients.</div>
+    </div>
+  </section>
+
+  <section id="works">
+    <h2>My Works</h2>
+    <div class="works">
+      <button onclick="openModal('Work 1', 'https://via.placeholder.com/400x250?text=Work+1', 'This is the description for Work 1.')">
+        <img src="https://via.placeholder.com/200x130?text=Work+1" alt="Work 1">
+      </button>
+      <button onclick="openModal('Work 2', 'https://via.placeholder.com/400x250?text=Work+2', 'This is the description for Work 2.')">
+        <img src="https://via.placeholder.com/200x130?text=Work+2" alt="Work 2">
+      </button>
+      <button onclick="openModal('Work 3', 'https://via.placeholder.com/400x250?text=Work+3', 'This is the description for Work 3.')">
+        <img src="https://via.placeholder.com/200x130?text=Work+3" alt="Work 3">
+      </button>
+    </div>
+  </section>
+
+  <div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:2000;">
+    <div style="background:#1a0033; padding:20px; border-radius:12px; max-width:600px; width:90%; text-align:center; position:relative;">
+      <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; font-size:20px; color:white; cursor:pointer;">&times;</span>
+      <h2 id="modalTitle" style="color:#657bf7; margin-bottom:10px;"></h2>
+      <img id="modalImage" src="" alt="Modal Image" style="max-width:100%; border-radius:10px; border:4px solid rgb(0, 47, 202); box-shadow:0 0 10px #6600cc;">
+      <p id="modalDesc" style="color:white; margin-top:15px;"></p>
+    </div>
+  </div>
+  
+  <section id="portfolio">
+    <h2>Gallery</h2>
+    <div class="gallery-slideshow">
+      <img id="galleryImage" src="https://via.placeholder.com/200x130?text=Gallery+1" alt="Gallery Image"/>
+      <div class="gallery-buttons">
+        <button onclick="prevImage()">Previous</button>
+        <button onclick="nextImage()">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Send Me a Message</h2>
+    <form action="https://formspree.io/f/mqaeoawk" method="POST">
+      <input type="text" name(client)="name" placeholder="Your Name" required/>
+      <input type="email" name="email" placeholder="Your Email" required/>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div class="code-widget">
+    <div class="widget-header">
+      <span>&lt;/&gt; Snippet of the Day</span>
+    </div>
+    <pre id="codeDisplay"><code></code></pre>
+    <button onclick="copyCode()">📋 Copy</button>
+  </div>
+
+  <div id="backToTop" onclick="scrollToTop()">↑ Top</div>
+
+  <footer>
+    <p>Connect with me:</p>
+    <div class="social-links">
+      <a href="https://github.com/Marc15MR" target="_blank">GitHub</a>
+      <a href="https://instagram.com/_raymarc_" target="_blank">Instagram</a>
+      <a href="https://facebook.com/Marc15MR" target="_blank">Facebook</a>
+    </div>
+    <p>&copy; 2025 Marc</p>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("open");
+    }
+
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      const content = document.getElementById("secret-content");
+      const error = document.getElementById("error-msg");
+
+      if (password === "lovemarc") {
+        content.style.display = "block";
+        error.style.display = "none";
+      } else {
+        error.style.display = "block";
+        content.style.display = "none";
+      }
+    }
+
+    window.addEventListener("scroll", () => {
+      const topButton = document.getElementById("backToTop");
+      if (window.scrollY > 200) {
+        topButton.style.display = "block";
+      } else {
+        topButton.style.display = "none";
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openModal(title, imgSrc, description) {
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalImage").src = imgSrc;
+  document.getElementById("modalDesc").textContent = description;
+  document.getElementById("imageModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+const galleryImages = [
+  "https://via.placeholder.com/200x130?text=Gallery+1",
+  "https://via.placeholder.com/200x130?text=Gallery+2",
+  "https://via.placeholder.com/200x130?text=Gallery+3"
+];
+
+let currentIndex = 0;
+const galleryImage = document.getElementById("galleryImage");
+
+function showImage(index) {
+  galleryImage.src = galleryImages[index];
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  showImage(currentIndex);
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  showImage(currentIndex);
+}
+
+  const musicBtn = document.getElementById("musicToggle");
+  const music = document.getElementById("musicPlayer");
+
+  let isPlaying = false;
+
+  musicBtn.addEventListener("click", () => {
+    if (isPlaying) {
+      music.pause();
+      musicBtn.textContent = "▶️";
+    } else {
+      music.play();
+      musicBtn.textContent = "⏸️";
+    }
+    isPlaying = !isPlaying;
+  });
+
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle("light-mode");
+  });
+
+  const snippets = [
+    `console.log("Hello, world!");`,
+    `function greet(name) {\n  return "Hi " + name + "!";\n}`,
+    `body {\n  background: linear-gradient(to right, #667eea, #764ba2);\n}`,
+    `<div class="heart">❤️</div>`,
+    `const sum = (a, b) => a + b;`
+  ];
+
+  const codeElement = document.querySelector("#codeDisplay code");
+  const randomSnippet = snippets[Math.floor(Math.random() * snippets.length)];
+  codeElement.textContent = randomSnippet;
+
+  function copyCode() {
+    navigator.clipboard.writeText(codeElement.textContent)
+      .then(() => alert("Copied to clipboard!"))
+      .catch(err => alert("Oops, something went wrong!"));
+  }
+
+  </script>
+</body>
+</html>
