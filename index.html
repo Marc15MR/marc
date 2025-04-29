@@ -435,6 +435,132 @@ button:hover {
   color: #333;
   text-align: center;
   margin-top: 60px;
+} 
+
+/* Skills Section */
+ .skills {
+      max-width: 600px;
+      margin: 50px auto;
+      background: rgb(52, 177, 219);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .skills h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    /* Horizontal Stirrers */
+    .stirrers {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      gap: 15px;
+      height: 100px;
+      margin-top: 30px;
+    }
+    .stirrer {
+      width: 30px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .stirrer:hover {
+      transform: scale(1.1);
+    }
+    .stirrer:nth-child(1) {
+      height: 90%;
+      background-color: #1e90ff;
+    }
+    .stirrer:nth-child(2) {
+      height: 80%;
+      background-color: #ff6347;
+    }
+    .stirrer:nth-child(3) {
+      height: 70%;
+      background-color: #32cd32;
+    }
+    .stirrer:nth-child(4) {
+      height: 60%;
+      background-color: #ff4500;
+    } 
+
+    .skills {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.skill img {
+  width: 30px;
+  height: 30px;
+}
+.bar {
+  height: 20px;
+  border-radius: 10px;
+  background-color: #ddd;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.bar::after {
+  content: '';
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+.bar.html::after {
+  width: 95%;
+  background-color: #e34c26;
+}
+.bar.css::after {
+  width: 75%;
+  background-color: #264de4;
+}
+.bar.js::after {
+  width: 40%;
+  background-color: #f0db4f;
+}
+.bar.python::after {
+  width: 10%;
+  background-color: #306998;
+} 
+
+.bar:hover::after {
+  transform: scaleX(1.05);
+  filter: brightness(1.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.bar::after {
+  transition: all 0.3s ease-in-out;
+}
+
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  flex: 1 1 250px;
 }
   </style>
 </head>
@@ -479,6 +605,28 @@ button:hover {
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" />
   </div>
 </div>
+   
+<!-- Skill Stirrers Section -->
+    <h4>Tecnical Skills</h4>
+    <div class="skills">
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+        <div class="bar html"></div>
+      </div>
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+        <div class="bar css"></div>
+      </div>
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+        <div class="bar js"></div>
+      </div>
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+        <div class="bar python"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
   <section id="about">
