@@ -427,6 +427,14 @@ button:hover {
 .stack-icons img:hover {
   transform: scale(1.2);
 }
+
+#heroTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 60px;
+}
   </style>
 </head>
 <body>
@@ -437,14 +445,14 @@ button:hover {
   </div>
 
   <header>
-    <h1>Marc's Scrapbook</h1>
+    <h1 id="headerTitle"></h1>
     <nav>
       <a href="#about">About</a>
       <a href="#works">Works</a>
       <a href="#gallery">Portfolio</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>
+  </header> 
 
   <div id="sidebar">
     <h2>Marc's Scrapbook</h2>
@@ -622,7 +630,10 @@ function nextImage() {
     `function greet(name) {\n  return "Hi " + name + "!";\n}`,
     `body {\n  background: linear-gradient(to right, #667eea, #764ba2);\n}`,
     `<div class="heart">❤️</div>`,
-    `const sum = (a, b) => a + b;`
+    `const sum = (a, b) => a + b;`,
+    `const items = ["apple", "banana", "cherry"];`,
+    `const user = { name: "Marc", age: , location: "Philippines" };`,  
+    `const fetchData = async () => {\n  const response = await fetch("https://api.example.com/data");\n  return response.json();\n}`,
   ];
 
   const codeElement = document.querySelector("#codeDisplay code");
@@ -635,6 +646,22 @@ function nextImage() {
       .catch(err => alert("Oops, something went wrong!"));
   }
 
+  const typewriter = new Typewriter('#headerTitle', {
+    loop: true,
+    delay: 75,
+  });
+
+  typewriter
+    .typeString("Marc's Scrapbook")
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString("Welcome to My Portfolio")
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString("Explore. Dream. Create.")
+    .pauseFor(2000)
+    .start();
+    
   </script>
 </body>
 </html>
