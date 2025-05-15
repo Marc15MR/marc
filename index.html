@@ -1022,6 +1022,403 @@
             }
         }
 
+        .flip-card-back {
+            background: radial-gradient(rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.02));
+            color: #0ff;
+            padding: 0;
+            margin: 0;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .hologram-ui {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background: rgba(0, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #0ff;
+            }
+
+            100% {
+                box-shadow: 0 0 30px #0ff;
+            }
+        }
+
+        .terminal p {
+            margin: 5px 0;
+            white-space: pre;
+        }
+
+        .flip-card-back {
+            background: rgba(0, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            border: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0ff;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        .holo-terminal {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(0, 255, 255, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: hologlow 2s ease-in-out infinite alternate;
+        }
+
+        .terminal-line {
+            white-space: pre;
+            font-size: 14px;
+            margin: 4px 0;
+            line-height: 1.4;
+        }
+
+        @keyframes hologlow {
+            0% {
+                box-shadow: 0 0 10px #0ff4;
+            }
+
+            100% {
+                box-shadow: 0 0 25px #0ff8;
+            }
+        }
+
+        .flip-card-back {
+            background: rgba(0, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+            color: #0ff;
+        }
+
+        .holo-terminal {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            background: rgba(0, 255, 255, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: hologlow 2s ease-in-out infinite alternate;
+        }
+
+        .terminal-lines {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .terminal-line {
+            white-space: pre;
+            font-size: 14px;
+            margin: 4px 0;
+            line-height: 1.4;
+        }
+
+        .floating-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #0ff;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-icons i {
+            transition: transform 0.3s ease;
+        }
+
+        .floating-icons i:hover {
+            transform: scale(1.3);
+        }
+
+        @keyframes hologlow {
+            0% {
+                box-shadow: 0 0 10px #0ff4;
+            }
+
+            100% {
+                box-shadow: 0 0 25px #0ff8;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-3px);
+            }
+        }
+
+        .holo-id-layout {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 255, 0.03);
+            backdrop-filter: blur(3px);
+            color: #0ff;
+            font-family: 'Courier New', monospace;
+            box-sizing: border-box;
+        }
+
+        .holo-photo img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            border: 2px solid #0ff;
+            object-fit: cover;
+        }
+
+        .holo-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .holo-name {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .holo-role,
+        .holo-sub {
+            margin: 2px 0;
+            font-size: 12px;
+        }
+
+        .terminal-lines {
+            margin-top: 10px;
+        }
+
+        .terminal-line {
+            white-space: pre;
+            font-size: 12px;
+            margin: 2px 0;
+        }
+
+        .info-fields {
+            margin-top: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .holo-card {
+            width: 300px;
+            height: 450px;
+            background: #111;
+            color: #0ff;
+            font-family: 'Orbitron', monospace;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .holo-face {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 6px #0ff);
+            animation: flicker 2s infinite alternate;
+        }
+
+        .holo-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes flicker {
+            0% {
+                filter: drop-shadow(0 0 6px #0ff);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 12px #0ff);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 6px #0ff);
+            }
+        }
+
+        .holo-loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0, 255, 255, 0.3);
+            border-top: 4px solid #0ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .holo-text {
+            flex-grow: 1;
+            font-size: 14px;
+            line-height: 1.5em;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .typing-text {
+            width: 100%;
+            overflow: hidden;
+            animation: typing 3.5s steps(40) forwards;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        .line {
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .floating-tech {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #0ff3, transparent);
+            animation: floatTech 3s ease-in-out infinite alternate;
+            opacity: 0.3;
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        @keyframes floatTech {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+
+        /* HOLOGRAM LOADING ANIMATION */
+        .holo-face {
+            flex-shrink: 0;
+            width: 120px;
+            height: 180px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-ring {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(0, 255, 255, 0.2);
+            border-top: 4px solid #0ff;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .holo-text {
+            flex-grow: 1;
+            font-size: 14px;
+            line-height: 1.5em;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .typing-text {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40) forwards;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        .line {
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
 
     </style>
 </head>
@@ -1114,32 +1511,22 @@
   </div>
                 </div>
 
-                <!-- Back Side with Timeline -->
+<!-- Back Side with Timeline -->
                 <div class="flip-card-back">
-                    <h3 class="timeline-title">About Me</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <h4> Student</h4>
-                                <p>Currently a senior high school student passionate about technology and just beginning my journey into web development.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <h4>Code Enthusiast</h4>
-                                <p>Exploring the depths of HTML, CSS, and JavaScript, I embrace the world of coding.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <h4>Aspiring Web Developer</h4>
-                                <p>Building my portfolio and pushing the limits of creativity in the digital space.</p>
-                            </div>
-                        </div>
+                    <!-- Hologram Loading Animation -->
+                    <div class="holo-face" aria-label="Hologram loading">
+                        <div class="loader-ring"></div>
                     </div>
+
+                    <!-- Typing Text -->
+                    <div class="holo-text" aria-label="Hologram typing text">
+                        <div class="line typing-text" style="animation-delay: 0s;">NAME: RAYMARC BOBIS</div>
+                        <div class="line typing-text" style="animation-delay: 4s;">STATUS: Senior High School</div>
+                        <div class="line typing-text" style="animation-delay: 8s;">FOCUS: Aspiring Web Developer</div>
+                        <div class="line typing-text" style="animation-delay: 12s;">SKILLS: HTML, CSS, JavaScript</div>
+                        <div class="line typing-text" style="animation-delay: 16s;">GOAL: Build Creative Websites</div>
+                    </div>
+
                 </div>
 
 
@@ -1441,6 +1828,11 @@
                 }, 2000); // Wait for fade-out to finish
             }, 5500); // After 4 seconds of animation
 
+            // Delayed animation for multiple lines typing effect
+            const lines = document.querySelectorAll('.typing-text');
+            lines.forEach((line, i) => {
+                line.style.animation = `typing 3.5s steps(40) forwards ${i * 4}s, blinkCaret 0.75s step-end infinite ${i * 4}s`;
+            });
         </script>
 </body>
 
