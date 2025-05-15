@@ -1628,7 +1628,7 @@
         <div id="console-output" class="console-output">
             <p>Initializing commands systems...</p>
         </div>
-        <input type="text" id="voiceCommand" placeholder="Type your commands..." autocomplete="off" />
+        <input type="text" id="voiceCommand" placeholder="Type your commands or type help" autocomplete="off" />
     </div>
 
     <section id="works">
@@ -1974,10 +1974,7 @@
                 }
 
                 // Extra Examples
-                else if (cmd.includes("play music")) {
-                    response = "Playing your theme music now.";
-                    playMusic(); // custom function below
-                }
+                
                 else if (cmd.includes("change theme")) {
                     response = "Switching to stealth mode.";
                     document.body.classList.toggle("dark-theme"); // assumes you have a theme class
@@ -1986,10 +1983,14 @@
                     response = "Redirecting you to contact page.";
                     window.open("contact.html", "_blank");
                 }
+                else if (cmd.includes("help")) {
+                    response = "cmd= help, status, shutdown, play music, change theme, contact";
+                }
+
 
                 // Default response
                 setTimeout(() => {
-                    printToConsole(`AI: ${response}`);
+                    printToConsole(`MOON: ${response}`);
                 }, 500);
             }
 
