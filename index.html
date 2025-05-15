@@ -1624,11 +1624,11 @@
 
     <!-- Hidden Voice Console -->
     <div id="aiConsole" class="ai-console hidden">
-        <div class="console-header">Stark Systems Voice Console</div>
+        <div class="console-header">Marc Systems commands Console</div>
         <div id="console-output" class="console-output">
-            <p>Initializing voice systems...</p>
+            <p>Initializing commands systems...</p>
         </div>
-        <input type="text" id="voiceCommand" placeholder="Type or speak your command..." autocomplete="off" />
+        <input type="text" id="voiceCommand" placeholder="Type your commands..." autocomplete="off" />
     </div>
 
     <section id="works">
@@ -2006,7 +2006,7 @@
                     aiConsole.classList.remove("hidden");
 
                     // Notification
-                    alert("J.A.R.V.I.S. Online");
+                    alert("M.O.O.N. Online");
 
                     // Optional: focus the input field
                     document.getElementById("voiceCommand").focus();
@@ -2014,11 +2014,8 @@
                     // Hide the AI console
                     aiConsole.classList.add("hidden");
 
-                    // Clear header
-                    headerTitle.textContent = "";
-
                     // Notification
-                    alert("J.A.R.V.I.S. Offline");
+                    alert("M.O.O.N. Offline");
                 }
             });
 
