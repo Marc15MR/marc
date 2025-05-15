@@ -1419,7 +1419,93 @@
             overflow: hidden;
         }
 
+        .ai-console {
+            width: 400px;
+            max-width: 90%;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid #0ff;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            color: #0ff;
+            box-shadow: 0 0 20px #0ff3;
+            border-radius: 10px;
+            margin: 50px auto;
+        }
 
+        .console-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #0ff;
+            padding-bottom: 5px;
+        }
+
+        .console-output {
+            height: 150px;
+            overflow-y: auto;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        #voiceCommand {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid #0ff;
+            color: #0ff;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        #voiceCommand:focus {
+            outline: none;
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        /* Hides console initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Optional: loader-ring animation if not yet styled */
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #0ff;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            cursor: pointer;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #jarvisNotification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00ffee;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-family: "Orbitron", sans-serif;
+            font-weight: bold;
+            box-shadow: 0 0 15px #00ffeea0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 9999;
+        }
+
+        #jarvisNotification.show {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -1486,6 +1572,7 @@
     </div>
 
 
+
     <section id="about" class="about-section">
 
         <div id="binary-overlay">
@@ -1497,26 +1584,27 @@
 
                 <!-- Front -->
                 <div class="flip-card-front">
-                     <div class="container">
-    <div class="ring r01"></div>
-    <div class="ring r02"></div>
-    <div class="ring r03"></div>
-    <div class="ring r04"></div>
-    <div class="ring r051"></div>
-    <div class="ring r052"></div>
-    <div class="ring r06"></div>
-    <div class="ring r07"></div>
-    <div class="ring r08"></div>
-    <div class="ring r09"></div>
-  </div>
+                    <div class="container">
+                        <div class="ring r01"></div>
+                        <div class="ring r02"></div>
+                        <div class="ring r03"></div>
+                        <div class="ring r04"></div>
+                        <div class="ring r051"></div>
+                        <div class="ring r052"></div>
+                        <div class="ring r06"></div>
+                        <div class="ring r07"></div>
+                        <div class="ring r08"></div>
+                        <div class="ring r09"></div>
+                    </div>
                 </div>
 
-<!-- Back Side with Timeline -->
+                <!-- Back Side with Timeline -->
                 <div class="flip-card-back">
                     <!-- Hologram Loading Animation -->
                     <div class="holo-face" aria-label="Hologram loading">
                         <div class="loader-ring"></div>
                     </div>
+
 
                     <!-- Typing Text -->
                     <div class="holo-text" aria-label="Hologram typing text">
@@ -1534,6 +1622,14 @@
         </div>
     </section>
 
+    <!-- Hidden Voice Console -->
+    <div id="aiConsole" class="ai-console hidden">
+        <div class="console-header">Stark Systems Voice Console</div>
+        <div id="console-output" class="console-output">
+            <p>Initializing voice systems...</p>
+        </div>
+        <input type="text" id="voiceCommand" placeholder="Type or speak your command..." autocomplete="off" />
+    </div>
 
     <section id="works">
         <h2>My Works</h2>
@@ -1618,6 +1714,8 @@
 
     <!-- Main Content -->
     <div id="mainContent" class="hidden">
+
+        <div id="jarvisNotification"></div>
 
 
         <script>
@@ -1833,6 +1931,100 @@
             lines.forEach((line, i) => {
                 line.style.animation = `typing 3.5s steps(40) forwards ${i * 4}s, blinkCaret 0.75s step-end infinite ${i * 4}s`;
             });
+
+            const commandInput = document.getElementById("voiceCommand");
+            const output = document.getElementById("console-output");
+
+            commandInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    const command = commandInput.value.trim();
+                    if (command) {
+                        printToConsole(`> ${command}`);
+                        respondToCommand(command.toLowerCase());
+                        commandInput.value = "";
+                    }
+                }
+            });
+
+            function printToConsole(text) {
+                const line = document.createElement("p");
+                line.textContent = text;
+                output.appendChild(line);
+                output.scrollTop = output.scrollHeight;
+            }
+
+            function respondToCommand(cmd) {
+                let response = "Unrecognized command.";
+
+                // Navigation Commands
+                if (cmd.includes("01000011")) {
+                    response = "Accessing personal archives... Displaying love messages.";
+                    window.location.href = "https://marc15mr.github.io/loveyletter/"; // replace with your actual page
+                }
+                else if (cmd.includes("memory")) {
+                    response = "Memory system activated. Pulling shared memories.";
+                    window.location.href = "gallery.html"; // redirect to memory gallery
+                }
+                else if (cmd.includes("status")) {
+                    response = "System Status: Online. Emotional status: Overwhelmed by love.";
+                }
+                else if (cmd.includes("shutdown")) {
+                    response = "Shutting down... Goodbye, Marc.";
+                    setTimeout(() => window.close(), 2000); // only works for windows opened via JS
+                }
+
+                // Extra Examples
+                else if (cmd.includes("play music")) {
+                    response = "Playing your theme music now.";
+                    playMusic(); // custom function below
+                }
+                else if (cmd.includes("change theme")) {
+                    response = "Switching to stealth mode.";
+                    document.body.classList.toggle("dark-theme"); // assumes you have a theme class
+                }
+                else if (cmd.includes("contact")) {
+                    response = "Redirecting you to contact page.";
+                    window.open("contact.html", "_blank");
+                }
+
+                // Default response
+                setTimeout(() => {
+                    printToConsole(`AI: ${response}`);
+                }, 500);
+            }
+
+            const loaderRing = document.querySelector(".holo-face .loader-ring");
+            const aiConsole = document.getElementById("aiConsole");
+
+            let jarvisActive = false;
+
+            loaderRing.addEventListener("click", () => {
+                jarvisActive = !jarvisActive;
+
+                if (jarvisActive) {
+                    // Show the AI console
+                    aiConsole.classList.remove("hidden");
+
+                    // Notification
+                    alert("J.A.R.V.I.S. Online");
+
+                    // Optional: focus the input field
+                    document.getElementById("voiceCommand").focus();
+                } else {
+                    // Hide the AI console
+                    aiConsole.classList.add("hidden");
+
+                    // Clear header
+                    headerTitle.textContent = "";
+
+                    // Notification
+                    alert("J.A.R.V.I.S. Offline");
+                }
+            });
+
+
+
+
         </script>
 </body>
 
