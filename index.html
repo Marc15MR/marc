@@ -1972,6 +1972,10 @@
                     response = "Shutting down... Goodbye, Marc.";
                     setTimeout(() => window.close(), 2000); // only works for windows opened via JS
                 }
+                else if (cmd.includes("run protocol")) {
+                    response = "Running protocol activated... Redirecting to touch typing tool.";
+                    window.location.href = "https://schultzschultz.com/touchtype/?fbclid=PAQ0xDSwKWiURleHRuA2FlbQIxMAABp2YPVQl_hAseo43oIKgBxEW3IjGHB4qlyk8Ejmf5XTpTPZ86U1DSD79oFloP_aem_okcB3PTiq1lJ7ugixLofWw"; // only works for windows opened via JS
+                }
 
                 // Extra Examples
                 
@@ -1984,7 +1988,7 @@
                     window.open("contact.html", "_blank");
                 }
                 else if (cmd.includes("help")) {
-                    response = "cmd= help, status, shutdown, play music, change theme, contact";
+                    response = "cmd= help, status, shutdown, contact";
                 }
 
 
